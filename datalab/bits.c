@@ -164,9 +164,13 @@ int bitXor(int x, int y) { // 0 1 0 0 ^ 0 1 0 1 = 0 0 0 1
  *   Rating: 1
  */
 int tmin(void) {
-
-  return 2;
-
+  // Since we are confirmed to be on a 32 bit machine 
+  // we can just left shift one by 31 but so set MSB 
+  // and in 2'complement MSA have neagtive weight
+  int x, max_shift;
+  x = 1;
+  max_shift = 31;
+  return (x << max_shift);
 }
 //2
 /*
