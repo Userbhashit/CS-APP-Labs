@@ -181,7 +181,19 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return 2;
+  // For x = Tmax following condition will be true: (x + 1) ==  ~(x)
+  // since x + 1 on Tmax will cause an overflow
+  // we can recreate this with ! and ^ -> !(~x ^ (x + 1))
+
+  // special case 0xFFFFFFFF or -1 will also give same result 
+  // so we can just check first is number is -1 
+  // if not check other conditon 
+  // else return 0
+
+  // Using logical operator we can rewrite return statement as:
+  // return (x != -1) && ((~x) == (x + 1));
+
+  return !!(x + 1) & !(~x ^ (x + 1));
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
