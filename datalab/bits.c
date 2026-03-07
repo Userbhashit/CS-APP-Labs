@@ -204,6 +204,13 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
+  
+  // In a number in which all odd numbered bits are set will be represented as 0xAAAAAAAA
+  // we create this number with | and << 
+  // now we flip bits in x and use & operators to check if all oddbits cancel out
+  // if yes -> return 1 
+  // else -> return 0
+
   int odd_bits = 0xAA;
 
   odd_bits = odd_bits | (odd_bits << 8);
