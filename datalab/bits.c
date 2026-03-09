@@ -241,7 +241,11 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  // For x to be a digit between 0x30 and 0x39 
+  // x - 0x30 >= 0 and  0x39 - x >= 0 
+  // we can check if the result is less than 0 if 
+  // the MSB if is set or not
+  return !(((x + (~(0x30) + 1)) >> 31) | ((0x39 + (~(x) + 1)) >> 31));
 }
 /* 
  * conditional - same as x ? y : z 
