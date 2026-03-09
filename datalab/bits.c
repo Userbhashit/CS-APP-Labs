@@ -226,7 +226,9 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  // Filp all the bits (so we can also filp MSB)
+  // add 1
+  return (~x) + 1;
 }
 //3
 /* 
