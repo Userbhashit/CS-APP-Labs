@@ -255,7 +255,15 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  // We create a mask based on x 
+  // if x != 0 -> x = 1;
+  // else x = 0;
+  // since >> is arthmetic shift >> will set mask as 0Xffffffff
+  int mask = (!!x << 31) >> 31;
+
+  // If x is 0 mask & y = 0 and z is returned
+  // and vice versa if x != 0;
+  return ((mask & y) | (~mask & z));
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
