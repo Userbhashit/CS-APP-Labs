@@ -273,7 +273,10 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  // If x < y then x - y will always be negtive so MSB will always be set
+  // Hence result is !MSB
+  int negSub = (y + (~x + 1)) >> 31;
+  return !(negSub);
 }
 //4
 /* 
