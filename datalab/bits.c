@@ -288,7 +288,10 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
-  return 2;
+  // x | -x will always have a set MSB except 0
+  // right shifting (x | -x) by 31 gives us either 0 for 0
+  // or -1 for all number else
+  return (((~x + 1) | x) >> 31) + 1;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
