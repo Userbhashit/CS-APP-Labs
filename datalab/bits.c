@@ -306,7 +306,37 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
-  return 0;
+  // Check if there is a set bit in upper 16 bits then in 8 then in 4 and so on
+  // just a number is neg we filp it to clear MSB 
+
+  int base16, base8, base4, base2, base1, base0;
+  int mask = x >> 31;
+  int answer = 0;
+  x = x ^ mask;
+  
+  base16 = !!(x >> 16) << 4;
+  x = x >> base16;
+  answer += answer;
+
+  base8 = !!(x >> 8) << 3;
+  x = x >> base8;
+  answer += answer;
+
+  base4 = !!(x >> 4) << 2;
+  x = x >> base4;
+  answer += answer;
+
+  base2 = !!(x >> 2) << 1;
+  x = x >> base2;
+  answer += answer;
+
+  base1 = !!(x >> 1) << 0;
+  x = x >> base1;
+  answer += answer;
+
+  base0 = x;
+
+  return base16 + base8 + base4 + base2 + base1 + base0 + 1;
 }
 //float
 /* 
