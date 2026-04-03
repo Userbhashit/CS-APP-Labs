@@ -381,7 +381,28 @@ unsigned floatScale2(unsigned uf) {
  *   Rating: 4
  */
 int floatFloat2Int(unsigned uf) {
-  return 2;
+  unsigned s = uf >> 31;
+  int exp = ((uf >> 23) & 0xFF) - 127;
+  unsigned mantissa = (uf & 0x7FFFFF) | 0x800000;
+
+  if (exp < 0) {
+      return 0;
+  }
+
+  if (exp >= 31) {
+      return 0x80000000u;
+  }
+
+  if (exp > 23) {
+      mantissa <<= (exp - 23);
+  } else {
+      mantissa >>= (23 - exp);
+  }
+
+  if (s) {
+      return -mantissa;
+  }
+  return mantissa;
 }
 /* 
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
